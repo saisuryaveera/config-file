@@ -1,0 +1,2 @@
+example:
+  property: "This is a property from the config server"
