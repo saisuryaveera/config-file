@@ -1,2 +1,62 @@
-example:
-  property: "This is a property from the config server"
+spring:
+  application:
+    name: wealth-management
+  datasource:
+    url: jdbc:mysql://localhost:3306/wm
+    username: root
+    password: Rdsc@92269226
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-circular-references: true
+  jpa:
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: false
+        transaction:
+          jta:
+            platform: org.hibernate.service.jta.platform.internal.NoJtaPlatform
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 245660758111-07g9pgkdvtr1n0jbg95muhs4lmgpf3qi.apps.googleusercontent.com
+            client-secret: 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
+          #github:
+          #  client-id: Ov23liaFxbYPUY4N2YeZ
+          #  client-secret: fe1da58dfe1dcbfec0037e72a8aab0d08315981c
+logging:
+  file:
+    name: log/wealth-management.log
+  pattern:
+    rolling-policy:
+      file-name-pattern: log/wealth-management-%d{yyyy-MM-dd}.log
+      max-history: 30
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: ERROR
+      springdoc:
+        core: ERROR
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+      security:
+        config:
+          annotation:
+            authentication:
+              configuration:
+                InitializeUserDetailsBeanManagerConfigurer: ERROR
+    com:
+      wg: DEBUG
